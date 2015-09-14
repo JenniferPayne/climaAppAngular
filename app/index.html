@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="climaViewer">
+
+<head>
+  <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script data-require="angular.js@1.2.25" data-semver="1.2.25" src="https://code.angularjs.org/1.2.25/angular.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+<script src="http://selo.cptec.inpe.br/IBGE/cidade/json/240720"></script>
+
+  <script src="js/script.js"></script>
+  <script src="js/bd.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="container">
+  <h1>Veja o tempo em Blumenau</h1>
+
+  <div ng-controller="MainController">
+
+    <table class="table table-striped table-bordered text-center" ng-hide="!tempo">
+      <thead>
+        <tr>
+          <th class="text-center">Dia</th>
+          <th class="text-center"></th>
+          <th class="text-center">Descrição</th>
+          <th class="text-center">Máxima</th>
+          <th class="text-center">Mínima</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="x in tempo track by $index">
+          <td>{{x.dia}}</td>
+          <td><img ng-src="{{x.icone}}" alt="{{x.descricao}}"></td>
+          <td>{{x.descricao}}</td>
+          <td>{{x.maxima}}°</td>
+          <td>{{x.minima}}°</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="table table-striped table-bordered text-center" ng-show="!tempo">
+      <caption class="btn-danger btn-lg text-center text-uppercase">
+        {{message}}
+      </caption>
+      <thead>
+        <tr>
+          <th class="text-center">Dia</th>
+          <th class="text-center"></th>
+          <th class="text-center">Descrição</th>
+          <th class="text-center">Máxima</th>
+          <th class="text-center">Mínima</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="y in dadoOff track by $index">
+          <td>{{y.dia}}</td>
+          <td><img ng-src="{{y.icone}}" alt="{{y.descricao}}"></td>
+          <td>{{y.descricao}}</td>
+          <td>{{y.maxima}}°</td>
+          <td>{{y.minima}}°</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+{{error}}
+
+</body>
+
+</html>
